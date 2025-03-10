@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Friends List</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h2>Welcome, {{ username }}</h2>
+    <h3>Friends List</h3>
+    <ul id="friends-list">
+        {% for friend in friends %}
+        <li><a href="/chat/{{ friend }}">{{ friend }}</a></li>
+        {% endfor %}
+    </ul>
+    <input type="text" id="friend-username" placeholder="Enter username">
+    <button onclick="addFriend()">Add Friend</button>
+    <p id="error-message"></p>
+    <a href="/logout">Logout</a>
+</body>
+</html>

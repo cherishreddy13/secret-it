@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat with {{ friend }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</head>
+<body onload="setupSocket('{{ username }}', '{{ friend }}', '{{ room }}')">
+    <h2>Chat with {{ friend }}</h2>
+    <div id="chat-box">
+        {% for msg in chat_history %}
+        <p><strong>{{ msg.sender }}:</strong> {{ msg.message }}</p>
+        {% endfor %}
+    </div>
+    <input type="text" id="message" placeholder="Type a message">
+    <button onclick="sendMessage('{{ friend }}', '{{ room }}')">Send</button>
+</body>
+</html>
