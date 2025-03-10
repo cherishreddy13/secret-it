@@ -120,5 +120,11 @@ def handle_send_message(data):
     
     emit("receive_message", {"sender": sender, "message": message}, room=room, include_self=False)
 
+@socketio.on("message")
+def handle_message(msg):
+    print(f"Message received: {msg}")
+    socketio.send(msg, broadcast=True)
+    
+    
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socketio.run(app, host="0.0.0.0", port=5000)
