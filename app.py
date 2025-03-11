@@ -14,7 +14,7 @@ dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = ['8.8.8.8', '8.8.4.4']
 
 # MongoDB Connection
-client = MongoClient("mongodb+srv://reddycherish76:Cherish1302@dataleak.zr189.mongodb.net/")
+client = MongoClient("mongodb://reddycherish76:Cherish1302@cluster0-shard-00-00.zr189.mongodb.net:27017,cluster0-shard-00-01.zr189.mongodb.net:27017,cluster0-shard-00-02.zr189.mongodb.net:27017/?ssl=true&replicaSet=atlas-123xyz-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client["chat_app"]
 users_collection = db["users"]
 messages_collection = db["messages"]
