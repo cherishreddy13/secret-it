@@ -9,12 +9,8 @@ app.secret_key = "your_secret_key"
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
-import dns.resolver
-dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
-dns.resolver.default_resolver.nameservers = ['8.8.8.8', '8.8.4.4']
-
 # MongoDB Connection
-client = MongoClient("mongodb://reddycherish76:Cherish1302@cluster0-shard-00-00.zr189.mongodb.net:27017,cluster0-shard-00-01.zr189.mongodb.net:27017,cluster0-shard-00-02.zr189.mongodb.net:27017/?ssl=true&replicaSet=atlas-123xyz-shard-0&authSource=admin&retryWrites=true&w=majority")
+client = MongoClient("mongodb+srv://reddycherish76:Cherish1302@dataleak.zr189.mongodb.net/")
 db = client["chat_app"]
 users_collection = db["users"]
 messages_collection = db["messages"]
@@ -124,11 +120,5 @@ def handle_send_message(data):
     
     emit("receive_message", {"sender": sender, "message": message}, room=room, include_self=False)
 
-@socketio.on("message")
-def handle_message(msg):
-    print(f"Message received: {msg}")
-    socketio.send(msg, broadcast=True)
-    
-    
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", port=5000)
+    socketio.run(app, debug=True)
