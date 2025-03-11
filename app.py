@@ -9,6 +9,10 @@ app.secret_key = "your_secret_key"
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
+import dns.resolver
+dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers = ['8.8.8.8', '8.8.4.4']
+
 # MongoDB Connection
 client = MongoClient("mongodb+srv://reddycherish76:Cherish1302@dataleak.zr189.mongodb.net/")
 db = client["chat_app"]
